@@ -1,0 +1,158 @@
+<ion-content [fullscreen]="true" class="home-content">
+  <div class="home-wrapper">
+
+    <!-- Header -->
+    <div class="home-header">
+      <div class="brand-row">
+        <img class="brand-icon" src="../../assets/Group.png" alt="carrot" />
+        <div class="location-row">
+          <ion-icon name="location-sharp"></ion-icon>
+          <span>Dhaka, Banassre</span>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <ion-icon name="search-outline"></ion-icon>
+        <input type="text" placeholder="Search Store" />
+      </div>
+    </div>
+
+    <!-- Promo Banner Swiper -->
+    <swiper-container
+      class="banner-swiper"
+      loop="true"
+      autoplay-delay="3500"
+      pagination="true"
+      pagination-clickable="true"
+      [breakpoints]="{'0': {slidesPerView: 1, spaceBetween: 12}, '768': {slidesPerView: 3, spaceBetween: 16}}">
+      <swiper-slide>
+        <div class="banner-card">
+          <img src="assets/Gemini_Generated_Image_g7hjag7hjag7hjag.png" alt="Fresh Vegetables" />
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="banner-card">
+          <img src="assets/Gemini_Generated_Image_9ntah99ntah99nta.png" alt="Fresh Fruits" />
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="banner-card">
+          <img src="assets/Gemini_Generated_Image_lgab90lgab90lgab.png" alt="Organic Meat" />
+        </div>
+      </swiper-slide>
+    </swiper-container>
+
+    <!-- Exclusive Offer -->
+    <div class="section-header">
+      <h2>Exclusive Offer</h2>
+      <a>See all</a>
+    </div>
+
+    <swiper-container
+      class="product-swiper"
+      [breakpoints]="{'0': {slidesPerView: 2.1, spaceBetween: 12}, '768': {slidesPerView: 4.1, spaceBetween: 14}}">
+      @for(item of product();track item)
+      {
+      <swiper-slide>
+        <div class="product-card" (click)="gotoproduct()" style="background:#fdeaea;">
+          <button class="fav-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+          </button>
+          <div class="product-image">
+            <img src="{{item.img}}" alt="Organic Bananas" />
+          </div>
+          <div class="product-info">
+            <h4> {{item.name}} </h4>
+            <p> {{item.weight}} </p>
+            <div class="product-bottom">
+              <span class="price"> {{item.price}} </span>
+              <button class="add-btn"><ion-icon name="add-outline"></ion-icon></button>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    }
+
+
+    </swiper-container>
+
+    <!-- Best Selling -->
+    <div class="section-header">
+      <h2>Best Selling</h2>
+      <a>See all</a>
+    </div>
+
+    <swiper-container
+      class="product-swiper"
+      [breakpoints]="{'0': {slidesPerView: 2.1, spaceBetween: 12}, '768': {slidesPerView: 4.1, spaceBetween: 14}}">
+      @for(selling of detail();track detail)
+      {
+      <swiper-slide>
+        <div class="product-card" (click)="gotoproduct()" style="background:#f2fff1">
+          <button class="fav-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+          </button>
+          <div class="product-image">
+            <img src="{{selling.img}}" alt="Bell Pepper Red" />
+          </div>
+          <div class="product-info">
+            <h4>{{selling.name}}</h4>
+            <p>{{selling.weight}}</p>
+            <div class="product-bottom">
+              <span class="price">${{selling.price}}</span>
+              <button class="add-btn"><ion-icon name="add-outline"></ion-icon></button>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    }
+    </swiper-container>
+    <div class="section-header">
+      <h2>Groceries</h2>
+      <a>See all</a>
+    </div>
+    <swiper-container
+      class="category-swiper"
+      [breakpoints]="{'0': {slidesPerView: 2.1, spaceBetween: 12}, '768': {slidesPerView: 4.1, spaceBetween: 16}}">
+          @for(category of button();track category)
+      {
+      <swiper-slide>
+        <div class="category-chip" tabindex="0" role="button"style="{{category.background}}">
+          <img src="{{category.img}}" alt="Pulses" />
+          <span>{{category.name}}</span>
+        </div>
+      </swiper-slide>
+      }
+    </swiper-container>
+
+    <swiper-container
+      class="grocery-swiper"
+      [breakpoints]="{'0': {slidesPerView: 2.1, spaceBetween: 12}, '768': {slidesPerView: 4.1, spaceBetween: 14}}">
+      @for(card of grocery();track card)
+      {
+      <swiper-slide>
+        <div class="product-card" (click)="gotoproduct()"style="{{card.background}}">
+          <button class="fav-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+          </button>
+          <div class="product-image">
+            <img src="{{card.img}}" alt="Beef Bone" />
+          </div>
+          <div class="product-info">
+            <h4>{{card.name}}</h4>
+            <p>{{card.weight}}</p>
+            <div class="product-bottom">
+              <span class="price">{{card.price}}</span>
+              <button class="add-btn"><ion-icon name="add-outline"></ion-icon></button>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    }
+
+    </swiper-container>
+
+  </div>
+</ion-content>
+
+<!-- Bottom nav is rendered app-wide by <app-bottom-nav> in app.component.html -->

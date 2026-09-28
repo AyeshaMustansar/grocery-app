@@ -1,0 +1,187 @@
+$accent-green: #4CAF6E;
+$text-dark: #1f1f1f;
+$text-muted: #8a8a8a;
+
+.order-content {
+  --background: linear-gradient(160deg, #fdf6f2 0%, #f4f8f5 35%, #f2f5fb 70%, #fdf3f6 100%);
+}
+
+.page-title {
+  text-align: center;
+  padding-top: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(31, 31, 31, 0.35);
+  letter-spacing: 0.2px;
+}
+
+.success-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 28px 40px;
+  min-height: calc(100% - 40px);
+}
+
+.confetti-field {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 190px;
+  margin-top: 6px;
+}
+
+.confetti {
+  position: absolute;
+  animation: float 3.6s ease-in-out infinite;
+}
+
+.confetti.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.confetti.dot.green { background: #35c168; animation-delay: 0.1s; }
+.confetti.dot.red { background: #ff5a5a; width: 6px; height: 6px; animation-delay: 0.4s; }
+.confetti.dot.blue { background: #4d96ff; animation-delay: 0.3s; }
+
+.confetti.ring {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2.5px solid;
+  background: transparent;
+}
+.confetti.ring.yellow { border-color: #ffc107; animation-delay: 0.5s; }
+.confetti.ring.purple { border-color: #b98cf2; animation-delay: 0.2s; }
+.confetti.ring.green { border-color: #35c168; animation-delay: 0.6s; }
+
+.confetti.squiggle {
+  animation-delay: 0.35s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(6deg); }
+}
+
+.check-circle {
+  position: absolute;
+  left: 50%;
+  top: 28%;
+  transform: translate(-50%, -50%);
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: $accent-green;
+  box-shadow: 0 14px 30px rgba(76, 175, 110, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.circle-ring {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 2;
+}
+
+.check-path {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 70;
+  stroke-dashoffset: 70;
+  transition: stroke-dashoffset 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+
+  &.drawn {
+    stroke-dashoffset: 0;
+  }
+}
+
+.success-text {
+  text-align: center;
+  margin-top: 12px;
+  padding: 0 8px;
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: $text-dark;
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 13.5px;
+    color: $text-muted;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+.success-actions {
+  width: 100%;
+  max-width: 340px;
+  margin-top: auto;
+  padding-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.track-btn {
+  width: 100%;
+  --background: #{$accent-green};
+  --background-hover: #429a5f;
+  --background-activated: #3c8a55;
+  --border-radius: 28px;
+  --box-shadow: 0 8px 18px rgba(76, 175, 110, 0.3);
+  height: 54px;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: none;
+  letter-spacing: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    --box-shadow: 0 12px 22px rgba(76, 175, 110, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.back-home {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-dark;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    color: $accent-green;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+:host ::ng-deep .order-toast {
+  --border-radius: 10px;
+  font-size: 13px;
+}

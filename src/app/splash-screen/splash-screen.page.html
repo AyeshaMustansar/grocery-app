@@ -1,0 +1,116 @@
+<ion-content [fullscreen]="true" class="splash-content" id="splashContent">
+
+  <!-- JS-Driven Constellation Canvas -->
+  <canvas id="constellationCanvas" class="constellation-canvas"></canvas>
+
+  <!-- CRT Horizontal Scanline -->
+  <div class="crt-scanline"></div>
+
+  <!-- Noise Film Grain Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- ── Main Stage ── -->
+  <div class="splash-stage">
+
+    <!-- Hexagonal Logo Cage -->
+    <div class="hex-frame">
+
+      <!-- Rotating SVG Hexagon Rings -->
+      <svg class="hex-svg hex-svg-1" viewBox="0 0 200 200">
+        <polygon class="hex-poly h1"
+          points="100,10 182,55 182,145 100,190 18,145 18,55"/>
+      </svg>
+      <svg class="hex-svg hex-svg-2" viewBox="0 0 200 200">
+        <polygon class="hex-poly h2"
+          points="100,20 172,62 172,138 100,180 28,138 28,62"/>
+      </svg>
+
+      <!-- Energy Spikes radiating out -->
+      <div class="spikes">
+        <span class="spike sp1"></span>
+        <span class="spike sp2"></span>
+        <span class="spike sp3"></span>
+        <span class="spike sp4"></span>
+        <span class="spike sp5"></span>
+        <span class="spike sp6"></span>
+      </div>
+
+      <!-- Core Orb -->
+      <div class="hex-core">
+        <div class="core-scan"></div>
+        <div class="core-glow"></div>
+        <img class="core-icon" src="../../assets/Group (1).png" alt="nectar"/>
+      </div>
+
+    </div>
+
+    <!-- Brand Identity -->
+    <div class="brand-zone">
+
+      <!-- Neon Letters -->
+      <div class="neon-word">
+        <span class="nc" style="--i:0">n</span>
+        <span class="nc" style="--i:1">e</span>
+        <span class="nc" style="--i:2">c</span>
+        <span class="nc" style="--i:3">t</span>
+        <span class="nc" style="--i:4">a</span>
+        <span class="nc" style="--i:5">r</span>
+      </div>
+
+      <!-- Animated SVG Divider -->
+      <svg class="divider-svg" viewBox="0 0 240 14" xmlns="http://www.w3.org/2000/svg">
+        <line class="div-line dl-l" x1="0" y1="7" x2="100" y2="7"/>
+        <circle class="div-dot" cx="120" cy="7" r="4"/>
+        <circle class="div-dot-sm" cx="107" cy="7" r="2"/>
+        <circle class="div-dot-sm" cx="133" cy="7" r="2"/>
+        <line class="div-line dl-r" x1="140" y1="7" x2="240" y2="7"/>
+      </svg>
+
+      <p class="sub-label">online groceries</p>
+    </div>
+
+    <!-- EKG Heartbeat Footer -->
+    <div class="ekg-zone">
+      <svg class="ekg-svg" viewBox="0 0 320 50"
+           xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <polyline class="ekg-line"
+          points="0,25 35,25 50,25 62,5 72,46 82,12 92,36 102,25 290,25 320,25"/>
+        <!-- Travelling glow dot -->
+        <circle class="ekg-dot" r="4" cx="0" cy="25"/>
+      </svg>
+      <p class="ekg-label">Fresh · Fast · Always</p>
+    </div>
+
+  </div>
+
+  <!-- ── Circuit Corner Traces ── -->
+  <svg class="circuit circuit-tl" viewBox="0 0 90 90">
+    <polyline class="c-trace" points="0,45 22,45 22,22 60,22 60,0"/>
+    <circle   class="c-node"  cx="22" cy="45" r="3"/>
+    <circle   class="c-node"  cx="22" cy="22" r="3"/>
+    <circle   class="c-node"  cx="60" cy="22" r="3"/>
+    <circle   class="c-node pulse-node" cx="60" cy="8" r="2"/>
+  </svg>
+  <svg class="circuit circuit-tr" viewBox="0 0 90 90">
+    <polyline class="c-trace" points="90,45 68,45 68,22 30,22 30,0"/>
+    <circle   class="c-node"  cx="68" cy="45" r="3"/>
+    <circle   class="c-node"  cx="68" cy="22" r="3"/>
+    <circle   class="c-node"  cx="30" cy="22" r="3"/>
+    <circle   class="c-node pulse-node" cx="30" cy="8" r="2"/>
+  </svg>
+  <svg class="circuit circuit-bl" viewBox="0 0 90 90">
+    <polyline class="c-trace" points="0,45 22,45 22,68 60,68 60,90"/>
+    <circle   class="c-node"  cx="22" cy="45" r="3"/>
+    <circle   class="c-node"  cx="22" cy="68" r="3"/>
+    <circle   class="c-node"  cx="60" cy="68" r="3"/>
+    <circle   class="c-node pulse-node" cx="60" cy="80" r="2"/>
+  </svg>
+  <svg class="circuit circuit-br" viewBox="0 0 90 90">
+    <polyline class="c-trace" points="90,45 68,45 68,68 30,68 30,90"/>
+    <circle   class="c-node"  cx="68" cy="45" r="3"/>
+    <circle   class="c-node"  cx="68" cy="68" r="3"/>
+    <circle   class="c-node"  cx="30" cy="68" r="3"/>
+    <circle   class="c-node pulse-node" cx="30" cy="80" r="2"/>
+  </svg>
+
+</ion-content>

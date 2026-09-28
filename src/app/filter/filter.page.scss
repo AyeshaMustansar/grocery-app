@@ -1,0 +1,19 @@
+ion-alert {
+  --ion-text-color: #e74c3c; /* Alert text color - red */
+
+  .alert-header {
+    color: #e74c3c !important;
+  }
+
+  .alert-subHeader {
+    color: #e67e22 !important; /* Sub header - orange */
+  }
+
+  .alert-message {
+    color: red !important; /* Message - red */
+  }
+
+  .alert-button {
+    color: red !important; /* Button - red */
+  }
+}

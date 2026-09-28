@@ -1,0 +1,58 @@
+<ion-content [fullscreen]="true" class="explore-content">
+  <div class="explore-wrapper">
+
+    <div class="search-sticky">
+      <div class="page-header">
+        <button class="icon-btn" (click)="goTohome()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
+        <h1 class="page-title">Find Products</h1>
+        <span class="header-spacer"></span>
+      </div>
+
+      <!-- Search bar: plain input, no binding, no filtering -->
+      <div class="search-row">
+        <div class="search-bar">
+          <ion-icon name="search-outline"></ion-icon>
+          <input type="text" placeholder="Search products" />
+        </div>
+        <div class="filter-btn">
+          <ion-icon name="options-outline"></ion-icon>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category chips -->
+    <swiper-container class="category-swiper" [breakpoints]="{'0': {slidesPerView: 2.1, spaceBetween: 12}, '900': {slidesPerView: 4.1, spaceBetween: 16}}">
+      @for(category of detail(); track category) {
+      <swiper-slide>
+        <div class="category-chip"style="{{category.background}}">
+          <img class="category-img" src="{{category.img}}" alt="{{category.name}}" />
+          <span>{{category.name}}</span>
+        </div>
+      </swiper-slide>
+      }
+    </swiper-container>
+
+    <!-- Product grid -->
+    <div class="product-grid">
+      @for(item of product(); track item) {
+      <div class="product-card" (click)="gotocard()"style="{{item.background}}">
+        <button class="like-btn"><ion-icon name="heart-outline"></ion-icon></button>
+        <div class="product-image"><img src="{{item.img}}" alt="{{item.name}}" /></div>
+        <div class="product-info">
+          <h4>{{item.name}}</h4>
+          <p>{{item.weight}}</p>
+          <div class="product-bottom">
+            <span class="price">${{item.price}}</span>
+            <button class="add-btn"><ion-icon name="add-outline"></ion-icon></button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+  </div>
+</ion-content>
+
+

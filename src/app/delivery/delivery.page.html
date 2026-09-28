@@ -1,0 +1,226 @@
+<ion-content [fullscreen]="true" class="delivery-content">
+  <div class="delivery-wrapper">
+
+    <!-- Header -->
+    <div class="page-header">
+      <button class="icon-btn">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+
+      <h1 class="page-title">Delivery</h1>
+
+      <span class="header-spacer"></span>
+    </div>
+
+
+    <div class="delivery-layout">
+
+      <!-- LEFT COLUMN -->
+      <div class="left-column">
+
+        <!-- Delivery Method -->
+        <div class="block">
+          <p class="block-label">When should we deliver?</p>
+
+          <div class="method-card">
+            <div class="method-icon" style="background: #fde3e3;">
+              <ion-icon
+                name="flash-outline"
+                style="color: #e0575b;"
+              ></ion-icon>
+            </div>
+
+            <div class="method-text">
+              <h4>Today (Express)</h4>
+              <p>Arrives within 2 hours</p>
+            </div>
+
+            <span class="method-price">$5.99</span>
+          </div>
+
+
+          <div class="method-card">
+            <div class="method-icon" style="background: #e3e9fd;">
+              <ion-icon
+                name="calendar-outline"
+                style="color: #4a6cf7;"
+              ></ion-icon>
+            </div>
+
+            <div class="method-text">
+              <h4>Tomorrow</h4>
+              <p>Delivered by 6:00 PM tomorrow</p>
+            </div>
+
+            <span class="method-price">$2.99</span>
+          </div>
+
+
+          <div class="method-card selected">
+            <div class="method-icon" style="background: #e1f5e9;">
+              <ion-icon
+                name="cube-outline"
+                style="color: #4fae7c;"
+              ></ion-icon>
+            </div>
+
+            <div class="method-text">
+              <h4>Standard</h4>
+              <p>3-5 business days</p>
+            </div>
+
+            <span class="method-price">Free</span>
+          </div>
+
+        </div>
+
+
+        <!-- Deliver To -->
+        <div class="block">
+          <p class="block-label">Deliver to</p>
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="detail-text">
+              <h4>Home</h4>
+              <p>+880 1711-223344</p>
+              <p>24 Banassre Road, Dhaka 1207</p>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- Payment -->
+        <div class="block">
+          <p class="block-label">Payment method</p>
+
+          <div class="detail-row">
+
+            <div class="detail-icon">
+              <ion-icon name="card-outline"></ion-icon>
+            </div>
+
+            <div class="detail-text">
+              <h4>Credit / Debit Card</h4>
+              <p>Visa ending in 4242</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- RIGHT COLUMN -->
+      <div class="summary-column">
+
+        <div class="summary-card">
+
+          <h3>Order Summary</h3>
+
+
+          <!-- Product 1 -->
+          <div class="product-row">
+
+            <div class="product-image">
+              <img
+                src="assets/92f1ea7dcce3b5d06cd1b1418f9b9413 3 (1).png"
+                alt="Bell Pepper Red"
+              />
+            </div>
+
+            <div class="product-text">
+              <h4>Bell Pepper Red</h4>
+              <p>1kg × 1</p>
+            </div>
+
+            <span class="product-price">$4.99</span>
+
+          </div>
+
+
+          <!-- Product 2 -->
+          <div class="product-row">
+
+            <div class="product-image">
+              <img
+                src="assets/pngfuel 16.png"
+                alt="Egg Chicken Red"
+              />
+            </div>
+
+            <div class="product-text">
+              <h4>Egg Chicken Red</h4>
+              <p>4pcs × 1</p>
+            </div>
+
+            <span class="product-price">$1.99</span>
+
+          </div>
+
+
+          <!-- Product 3 -->
+          <div class="product-row">
+
+            <div class="product-image">
+              <img
+                src="assets/banana-png-32.png"
+                alt="Organic Bananas"
+              />
+            </div>
+
+            <div class="product-text">
+              <h4>Organic Bananas</h4>
+              <p>12kg × 1</p>
+            </div>
+
+            <span class="product-price">$3.00</span>
+
+          </div>
+
+
+          <div class="summary-divider"></div>
+
+
+          <!-- Subtotal -->
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>$9.98</span>
+          </div>
+
+
+          <!-- Delivery Fee -->
+          <div class="summary-row">
+            <span>Delivery Fee</span>
+            <span>Free</span>
+          </div>
+
+
+          <div class="summary-divider"></div>
+
+
+          <!-- Total -->
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span>$9.98</span>
+          </div>
+
+
+          <!-- Place Order -->
+          <button class="place-order-btn">
+            Place Order
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

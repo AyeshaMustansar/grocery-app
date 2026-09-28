@@ -1,0 +1,195 @@
+<ion-content [fullscreen]="true" class="cart-content">
+  <div class="cart-wrapper">
+
+    <!-- Header bar with Title & Clear Cart option -->
+    <div class="cart-header-bar">
+      <h1 class="page-title">My Cart</h1>
+      @if (product.length > 0) {
+      <button class="clear-cart-btn" (click)="clearCart()">
+        <ion-icon name="trash-outline"></ion-icon>
+        <span>Clear All</span>
+      </button>
+      }
+    </div>
+
+    <div class="cart-layout">
+
+      <!-- Items column -->
+      <div class="items-column">
+
+        <div class="cart-list">
+
+          @if (product.length === 0) {
+          <div class="empty-cart-card">
+            <div class="empty-icon-circle">
+              <ion-icon name="cart-outline"></ion-icon>
+            </div>
+            <h3>Your cart is empty</h3>
+            <p>Explore our fresh organic groceries and add them to your cart!</p>
+          </div>
+          }
+
+          <!-- ---------- Item List ---------- -->
+          @for(item of product;track item;let i=$index)
+          {
+          <div class="cart-card-outer">
+            <div class="cart-item-card">
+              <div class="item-image"style="{{item.background}}">
+                <img src="{{item.img}}" alt="{{item.name}}" />
+              </div>
+
+              <div class="item-body">
+                <div class="item-top">
+                  <h4>{{item.name}}</h4>
+                  <p>{{item.weight}} • ${{item.price}} each</p>
+                </div>
+
+                <div class="item-bottom">
+                  <div class="qty-stepper">
+                    <button class="stepper-btn" (click)="dec(i)">
+                      <ion-icon name="remove-outline"></ion-icon>
+                    </button>
+                    <span class="stepper-value">{{item.qunty}}</span>
+                    <button class="stepper-btn" (click)="inc(i)">
+                      <ion-icon name="add-outline"></ion-icon>
+                    </button>
+                  </div>
+                  <span class="item-price">${{item.subtotal.toFixed(2)}}</span>
+                </div>
+              </div>
+
+              <button class="remove-cross-btn" (click)="removeItem(i)" aria-label="Remove Item">
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+            </div>
+          </div>
+          }
+
+        </div>
+      </div>
+
+      <!-- Summary column -->
+      <div class="summary-column">
+        <div class="summary-card">
+          <h3>Order Summary</h3>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>${{total.toFixed(2)}}</span>
+          </div>
+          <div class="summary-row">
+            <span>Delivery Fee</span>
+            <span class="free-badge">FREE</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span class="total-amount">${{total.toFixed(2)}}</span>
+          </div>
+
+          <button class="checkout-btn" (click)="proceedToCheckout()">
+            <ion-icon name="bag-check-outline"></ion-icon>
+            Go to Checkout
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>
+
+<!-- ---------- Ultra-Modern Animated 3D Interactive Alert Modal ---------- -->
+@if (alertState.show) {
+<div class="custom-alert-backdrop" [class.closing]="alertState.isClosing" (click)="closeCustomAlert()">
+
+  <!-- Ambient Floating Particles Layer -->
+  <div class="backdrop-particles">
+    <span class="particle p1"></span>
+    <span class="particle p2"></span>
+    <span class="particle p3"></span>
+    <span class="particle p4"></span>
+    <span class="particle p5"></span>
+  </div>
+
+  <!-- 3D Physics Interactive Alert Card -->
+  <div class="custom-alert-card" [ngClass]="[alertState.type, alertState.isClosing ? 'closing' : '']"
+    [style.transform]="alertTiltTransform" (mousemove)="onAlertMouseMove($event)" (mouseleave)="onAlertMouseLeave()"
+    (click)="$event.stopPropagation()">
+
+    <!-- Interactive Light Reflection Overlay -->
+    <div class="shimmer-light-overlay"
+      [style.background]="'radial-gradient(circle at ' + shineX + '% ' + shineY + '%, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0) 60%)'">
+    </div>
+
+    <!-- Top Pill Tag Header -->
+    <div class="alert-pill-tag" [ngClass]="alertState.type">
+      <ion-icon name="sparkles-outline"></ion-icon>
+      <span>{{ alertState.pillTag }}</span>
+    </div>
+
+    <!-- 3D Animated Icon Badge with Dual Orbit Halos & Radial Glow Aura -->
+    <div class="alert-badge-wrapper">
+      <div class="orbit-ring-1" [ngClass]="alertState.type"></div>
+      <div class="orbit-ring-2" [ngClass]="alertState.type"></div>
+      <div class="alert-glow-ring" [ngClass]="alertState.type"></div>
+      <div class="alert-badge-icon" [ngClass]="alertState.type">
+        <ion-icon [name]="alertState.badgeIcon"></ion-icon>
+      </div>
+    </div>
+
+    <!-- Title & Message -->
+    <h3 class="alert-title">{{ alertState.title }}</h3>
+    <p class="alert-message">{{ alertState.message }}</p>
+
+    <!-- Dynamic Product Item Preview Box -->
+    @if (alertState.productPreview) {
+    <div class="alert-product-preview">
+      <div class="preview-img-box"style="{{ alertState.productPreview.background }}">
+        <img [src]="alertState.productPreview.img" [alt]="alertState.productPreview.name" />
+      </div>
+      <div class="preview-info">
+        <span class="preview-name">{{ alertState.productPreview.name }}</span>
+        <span class="preview-meta">{{ alertState.productPreview.weight }} • ${{ alertState.productPreview.price
+          }}</span>
+      </div>
+      <div class="preview-qty-badge">
+        <span>Qty: {{ alertState.productPreview.qunty }}</span>
+      </div>
+    </div>
+    }
+
+    <!-- Dynamic Order Summary Preview Box (for Checkout Alert) -->
+    @if (alertState.summaryPreview) {
+    <div class="alert-summary-box">
+      <div class="summary-item-row">
+        <span>Items ({{ alertState.summaryPreview.itemCount }})</span>
+        <span>${{ alertState.summaryPreview.subtotal }}</span>
+      </div>
+      <div class="summary-item-row">
+        <span>Delivery</span>
+        <span class="green-text">{{ alertState.summaryPreview.delivery }}</span>
+      </div>
+      <div class="summary-item-divider"></div>
+      <div class="summary-item-row total-row">
+        <span>Grand Total</span>
+        <span class="grand-total-val">${{ alertState.summaryPreview.total }}</span>
+      </div>
+    </div>
+    }
+
+    <!-- Micro-interactive Action Buttons -->
+    <div class="alert-actions" [class.single-btn]="!alertState.showCancel">
+      @if (alertState.showCancel) {
+      <button class="alert-btn btn-cancel" (click)="closeCustomAlert()">
+        <span>{{ alertState.cancelText }}</span>
+      </button>
+      }
+      <button class="alert-btn btn-confirm" [ngClass]="alertState.type" (click)="alertState.onConfirm()">
+        <span class="btn-text">{{ alertState.confirmText }}</span>
+        <div class="btn-glow-effect"></div>
+      </button>
+    </div>
+
+  </div>
+</div>
+}

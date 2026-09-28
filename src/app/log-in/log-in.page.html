@@ -1,0 +1,274 @@
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="main">
+    <div class="bg-blur"></div>
+
+    <div class="login-wrapper-outer">
+      <div class="login-wrapper">
+
+        <!-- Brand Logo Badge -->
+        <div class="logo-badge">
+          <img class="logo-badge-img" src="../../assets/Group.png" alt="Fresh Market Logo" />
+        </div>
+
+        <!-- Header Block -->
+        <div class="header-block">
+          <div class="title">Loging</div>
+          <p class="subtitle">Enter your emails and password</p>
+        </div>
+
+        <!-- Email Input Field -->
+        <div class="input-group" [class.input-invalid]="emailError">
+          <input
+            type="email"
+            id="email"
+            placeholder=" "
+            [(ngModel)]="email"
+            autocomplete="email"
+            (keyup.enter)="goToHome()"
+            (input)="emailError = false"
+            [disabled]="isLockedOut"
+          />
+          <label for="email">Email</label>
+        </div>
+
+        <!-- Password Input Field -->
+        <div class="password-field" [class.input-invalid]="passwordError">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            placeholder=" "
+            [(ngModel)]="password"
+            autocomplete="current-password"
+            (keyup.enter)="goToHome()"
+            (input)="passwordError = false"
+            [disabled]="isLockedOut"
+          />
+          <label for="password">Password</label>
+          <button
+            type="button"
+            class="password-toggle-icon"
+            (click)="togglePasswordVisibility()"
+            [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+          >
+            <ion-icon [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+          </button>
+        </div>
+
+        <!-- Forgot Password Row -->
+        <div class="forgot-row">
+          <a class="forgot-link">Forgot Password?</a>
+        </div>
+
+        <!-- Log In Action Button -->
+        <button
+          type="button"
+          class="login-btn"
+          [class.is-loading]="isLoading"
+          [class.is-locked]="isLockedOut"
+          (click)="goToHome()"
+          [disabled]="isLoading || isLockedOut"
+        >
+          @if (isLockedOut) {
+            <ion-icon name="lock-closed-outline" class="lock-btn-icon"></ion-icon>
+            <span>Disabled for {{ lockoutSeconds }}s</span>
+          } @else if (isLoading) {
+            <span class="btn-spinner"></span>
+            <span>Verifying Account...</span>
+          } @else {
+            <span>Log In</span>
+          }
+        </button>
+
+        <!-- Signup Prompt -->
+        <p class="signup-row">
+          Don't have an account?
+          <a class="signup-link" (click)="goToSignUp()">Signup</a>
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ULTRA-PREMIUM 3D ANIMATED ALERT MODAL ================= -->
+  @if (showAlert) {
+    <div
+      class="neo-alert-overlay"
+      [class.overlay-closing]="isClosing"
+      (click)="closeAlert()"
+    >
+      <div
+        class="neo-alert-modal"
+        [class.is-success]="alertType === 'success'"
+        [class.is-error]="alertType === 'error' && !isLockedOut && !lockoutCompleted"
+        [class.is-locked-modal]="isLockedOut"
+        [class.is-unlocked-modal]="lockoutCompleted"
+        [class.modal-closing]="isClosing"
+        (click)="$event.stopPropagation()"
+      >
+        <!-- Background Ambient Aurora Glows -->
+        <div class="aurora-glow aurora-top"></div>
+        <div class="aurora-glow aurora-bottom"></div>
+
+        <!-- Close Button -->
+        <button class="neo-close-btn" (click)="closeAlert()" aria-label="Close dialog">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+
+        <!-- Top Status Indicator Badge -->
+        <div
+          class="status-indicator-badge"
+          [class.badge-success]="alertType === 'success' || lockoutCompleted"
+          [class.badge-error]="alertType === 'error' && !isLockedOut && !lockoutCompleted"
+          [class.badge-locked]="isLockedOut"
+        >
+          <span class="status-pulse-dot"></span>
+          @if (alertType === 'success') {
+            <span>Authentication Verified</span>
+          } @else if (isLockedOut) {
+            <span>Security Lockout Active</span>
+          } @else if (lockoutCompleted) {
+            <span>Security Lock Lifted</span>
+          } @else {
+            <span>Verification Notice</span>
+          }
+        </div>
+
+        <!-- ===== 3D HERO GRAPHIC / CIRCULAR GAUGE ===== -->
+        @if (isLockedOut || lockoutCompleted) {
+          <!-- CIRCULAR RADIAL COUNTDOWN GAUGE FOR LOCKOUT -->
+          <div class="lockout-gauge-wrapper" [class.is-unlocked]="lockoutCompleted">
+            <svg class="lockout-gauge-svg" viewBox="0 0 100 100">
+              <circle class="gauge-bg" cx="50" cy="50" r="42" />
+              <circle
+                class="gauge-progress"
+                cx="50"
+                cy="50"
+                r="42"
+                [style.strokeDashoffset]="isLockedOut ? (264 * (10 - lockoutSeconds) / 10) : 0"
+              />
+            </svg>
+            <div class="gauge-center-content">
+              @if (isLockedOut) {
+                <ion-icon name="lock-closed-outline" class="gauge-lock-icon"></ion-icon>
+                <span class="gauge-seconds">{{ lockoutSeconds }}s</span>
+              } @else {
+                <ion-icon name="lock-open-outline" class="gauge-unlock-icon"></ion-icon>
+                <span class="gauge-seconds ready-text">READY</span>
+              }
+            </div>
+          </div>
+        } @else {
+          <!-- 3D ORBITAL HERO ICON FOR SUCCESS & NORMAL ERROR -->
+          <div
+            class="hero-icon-stage"
+            [class.stage-success]="alertType === 'success'"
+            [class.stage-error]="alertType === 'error'"
+          >
+            <div class="orbital-ring orbital-outer"></div>
+            <div class="orbital-ring orbital-inner"></div>
+
+            <!-- Success Icon -->
+            @if (alertType === 'success') {
+              <div class="floating-sparkle sparkle-tl">✨</div>
+              <div class="floating-sparkle sparkle-br">✨</div>
+              <div class="floating-sparkle sparkle-tr">🌱</div>
+
+              <div class="icon-shield-sphere sphere-success">
+                <svg class="svg-motion-check" viewBox="0 0 64 64">
+                  <circle class="svg-halo" cx="32" cy="32" r="28" fill="none" />
+                  <path class="svg-checkmark-path" fill="none" d="M19 33 l9 9 l18 -18" />
+                </svg>
+              </div>
+            }
+
+            <!-- Normal Error Icon -->
+            @if (alertType === 'error') {
+              <div class="icon-shield-sphere sphere-error">
+                <svg class="svg-motion-cross" viewBox="0 0 64 64">
+                  <circle class="svg-halo-error" cx="32" cy="32" r="28" fill="none" />
+                  <path class="svg-cross-bar1" fill="none" d="M22 22 L42 42" />
+                  <path class="svg-cross-bar2" fill="none" d="M42 22 L22 42" />
+                </svg>
+              </div>
+            }
+          </div>
+        }
+
+        <!-- Title & Explanatory Copy -->
+        <h3 class="neo-alert-title">{{ alertTitle }}</h3>
+        <p class="neo-alert-desc">{{ alertMessage }}</p>
+
+        <!-- Sleek Credential Card Pill -->
+        @if (alertDetail) {
+          <div
+            class="user-credential-card"
+            [class.card-success]="alertType === 'success' || lockoutCompleted"
+            [class.card-error]="alertType === 'error' && !isLockedOut && !lockoutCompleted"
+            [class.card-locked]="isLockedOut"
+          >
+            <div class="user-avatar-mini">
+              <ion-icon [name]="alertType === 'success' ? 'shield-checkmark-outline' : (isLockedOut ? 'lock-closed-outline' : (lockoutCompleted ? 'shield-checkmark-outline' : 'alert-circle-outline'))"></ion-icon>
+            </div>
+            <div class="credential-info">
+              <span class="credential-label">{{ alertType === 'success' ? 'Verified Account' : (isLockedOut ? 'Security Cooldown' : (lockoutCompleted ? 'System Status' : 'Account Status')) }}</span>
+              <span class="credential-value">{{ isLockedOut ? ('Button disabled for ' + lockoutSeconds + 's') : alertDetail }}</span>
+            </div>
+          </div>
+        }
+
+        <!-- Interactive Action Buttons -->
+        <div class="neo-alert-actions">
+          @if (alertType === 'success') {
+            <button class="neo-btn-primary btn-success-glow" (click)="proceedToHome()">
+              <div class="btn-sheen-sweep"></div>
+              <ion-icon name="bag-check-outline" class="btn-icon-start"></ion-icon>
+              <span>Explore Groceries</span>
+              <ion-icon name="arrow-forward-outline" class="btn-icon-arrow"></ion-icon>
+            </button>
+          }
+
+          @if (alertType === 'error') {
+            @if (isLockedOut) {
+              <!-- Locked Out: Button is visually & functionally disabled with live countdown -->
+              <button
+                class="neo-btn-primary btn-lockout-disabled"
+                [disabled]="true"
+              >
+                <ion-icon name="lock-closed-outline" class="btn-icon-start lock-spin-icon"></ion-icon>
+                <span>Disabled ({{ lockoutSeconds }}s)</span>
+              </button>
+              <button class="neo-btn-secondary" (click)="closeAlert()">
+                Dismiss
+              </button>
+            } @else if (lockoutCompleted) {
+              <!-- Lockout Completed: Dynamic Green Unlock CTA -->
+              <button
+                class="neo-btn-primary btn-success-glow"
+                (click)="tryAgain()"
+              >
+                <ion-icon name="lock-open-outline" class="btn-icon-start"></ion-icon>
+                <span>Try Again Now</span>
+                <ion-icon name="arrow-forward-outline" class="btn-icon-arrow"></ion-icon>
+              </button>
+            } @else {
+              <!-- Normal Error Buttons -->
+              <button
+                class="neo-btn-primary btn-error-glow"
+                (click)="tryAgain()"
+              >
+                <ion-icon name="refresh-outline" class="btn-icon-start"></ion-icon>
+                <span>Try Again</span>
+              </button>
+              <button class="neo-btn-secondary" (click)="closeAlert()">
+                Dismiss
+              </button>
+            }
+          }
+        </div>
+
+      </div>
+    </div>
+  }
+
+</ion-content>
+

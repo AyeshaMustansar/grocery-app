@@ -1,0 +1,57 @@
+<ion-content [fullscreen]="true" class="favorites-content">
+  <div class="favorites-wrapper">
+
+    <!-- Top bar -->
+    <div class="app-bar">
+      <button class="icon-btn" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      <div class="brand-group">
+        <img class="brand-logo" src="../../assets/Group.png" alt="Nectar logo">
+        <span class="brand">NECTAR</span>
+      </div>
+      <div class="heart-badge">
+        <ion-icon name="heart"></ion-icon>
+        <span class="badge-count">4</span>
+      </div>
+    </div>
+
+    <!-- Search bar: display only, no logic -->
+    <div class="search-bar">
+      <ion-icon name="search-outline"></ion-icon>
+      <input type="text" placeholder="Search favourites..." />
+    </div>
+
+    <div class="section-header">
+      <h1>Favourites</h1>
+      <span class="saved-count">4 saved</span>
+    </div>
+
+    <!-- Grid -->
+    <div class="favorites-grid">
+
+      @for(item of product(  );track item)
+      {
+      <div class="favorite-card"style="{{item.background}}">
+        <div class="card-image">
+          <img src="{{item.img}}" alt="">
+          <button class="fav-toggle">
+            <ion-icon name="heart"></ion-icon>
+          </button>
+        </div>
+        <div class="card-body">
+          <span class="rating"><ion-icon name="star"></ion-icon> {{item.rating}} </span>
+          <h4 class="item-name">{{item.name}}</h4>
+          <span class="price">${{item.price}}</span>
+          <button class="cart-btn">
+            <ion-icon name="cart-outline"></ion-icon>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</ion-content>
+
+<!-- Bottom nav is rendered app-wide by <app-bottom-nav> in app.component.html -->

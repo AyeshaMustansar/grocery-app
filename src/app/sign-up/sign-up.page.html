@@ -1,0 +1,76 @@
+<ion-content [fullscreen]="true" class="signup-content">
+  <div class="main">
+  <div class="bg-blur"></div>
+
+  <div class="signup-wrapper">
+
+    <div class="logo-badge">
+      <img src="../../assets/Group.png" alt="carrot" />
+    </div>
+
+    <div class="header-block">
+      <h1 class="title">Sign Up</h1>
+      <p class="subtitle">Enter your credentials to continue</p>
+    </div>
+
+    <form>
+
+      <!-- Username -->
+      <div class="input-group">
+        <input
+          type="text"
+          id="username"
+          placeholder=" " />
+        <label for="username">Username</label>
+      </div>
+
+      <!-- Email -->
+      <div class="input-group">
+        <input
+          type="email"
+          id="email"
+          placeholder=" "
+         />
+        <label for="email">Email</label>
+        <div class="icon-slot">
+          <img src="../../assets/vector 1.png" alt="valid email" />
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="input-group">
+        <input
+          type="password"
+          id="password"
+          placeholder=" " />
+        <label for="password">Password</label>
+        <div class="icon-slot toggle">
+          <ion-icon name="eye-off-outline"></ion-icon>
+        </div>
+      </div>
+
+      <p class="terms-row">
+        By continuing you agree to our
+        <a class="terms-link">Terms of Service</a>
+        and
+        <a class="terms-link">Privacy Policy</a>.
+      </p>
+
+      <ion-button
+        expand="block"
+        shape="round"
+        type="button"
+        class="signup-btn">
+        Sign Up
+      </ion-button>
+
+      <p class="login-row">
+        Already have an account?
+        <a class="login-link" (click)="goTologin()">Login</a>
+      </p>
+
+    </form>
+
+  </div>
+  </div>
+</ion-content>

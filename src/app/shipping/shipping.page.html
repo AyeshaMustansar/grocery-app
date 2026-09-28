@@ -1,0 +1,180 @@
+<ion-content [fullscreen]="true" class="shipping-content">
+  <div class="shipping-wrapper">
+
+    <!-- Header -->
+    <div class="page-header">
+      <button class="icon-btn" (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+      <h1 class="page-title">Shipping</h1>
+      <span class="header-spacer"></span>
+    </div>
+
+    <div class="shipping-layout">
+
+      <!-- Left column: sections -->
+      <div class="sections-column">
+
+        <!-- Delivery Address -->
+        <div class="accordion-section">
+          <div class="section-header">
+            <div class="section-icon" style="background:#e3e9fd">
+              <ion-icon name="location-outline" style="color:#4a6cf7"></ion-icon>
+            </div>
+            <div class="section-text">
+              <h3>Address</h3>
+              <p>24 Banassre Road, Dhaka 1207</p>
+            </div>
+            <ion-icon name="chevron-down-outline" class="section-chevron"></ion-icon>
+          </div>
+
+          <div class="section-body">
+            <div class="address-form">
+              <div class="form-field">
+                <ion-icon name="person-outline"></ion-icon>
+                <input type="text" placeholder="Full name" />
+              </div>
+
+              <div class="form-field">
+                <ion-icon name="call-outline"></ion-icon>
+                <input type="tel" placeholder="Phone number" />
+              </div>
+
+              <div class="form-field">
+                <ion-icon name="location-outline"></ion-icon>
+                <input type="text" placeholder="Street address" />
+              </div>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <input type="text" placeholder="City" />
+                </div>
+                <div class="form-field">
+                  <input type="text" placeholder="Postal code" />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button class="form-cancel-btn">Cancel</button>
+                <button class="form-save-btn">Save Address</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Payment Method -->
+        <div class="accordion-section">
+          <div class="section-header">
+            <div class="section-icon" style="background:#e1f5e9">
+              <ion-icon name="card-outline" style="color:#4FAE7C"></ion-icon>
+            </div>
+            <div class="section-text">
+              <h3>Payment Method</h3>
+              <p>Credit / Debit Card</p>
+            </div>
+            <ion-icon name="chevron-down-outline" class="section-chevron"></ion-icon>
+          </div>
+
+          <div class="section-body">
+
+            <div class="option-card">
+              <div class="option-icon" style="background:#e3e9fd">
+                <ion-icon name="card-outline"></ion-icon>
+              </div>
+              <div class="option-text">
+                <h4>Credit / Debit Card</h4>
+                <p>Visa ending in 4242</p>
+              </div>
+              <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            </div>
+
+            <div class="option-card">
+              <div class="option-icon" style="background:#e1f5e9">
+                <ion-icon name="card-outline"></ion-icon>
+              </div>
+              <div class="option-text">
+                <h4>Cash on Delivery</h4>
+                <p>Pay when it arrives</p>
+              </div>
+              <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Selected Products -->
+        <div class="accordion-section">
+          <div class="section-header">
+            <div class="section-icon" style="background:#fdeee0">
+              <ion-icon name="bag-handle-outline" style="color:#e08a3f"></ion-icon>
+            </div>
+            <div class="section-text">
+              <h3>Order Items</h3>
+              <p>3 products selected</p>
+            </div>
+            <ion-icon name="chevron-down-outline" class="section-chevron"></ion-icon>
+          </div>
+
+          <div class="section-body">
+
+            <div class="product-row">
+              <div class="product-image img-pepper"></div>
+              <div class="product-text">
+                <h4>Bell Pepper Red</h4>
+                <p>1kg &times; 1</p>
+              </div>
+              <span class="product-price">$4.99</span>
+            </div>
+
+            <div class="product-row">
+              <div class="product-image img-egg"></div>
+              <div class="product-text">
+                <h4>Egg Chicken Red</h4>
+                <p>4pcs &times; 1</p>
+              </div>
+              <span class="product-price">$1.99</span>
+            </div>
+
+            <div class="product-row">
+              <div class="product-image img-banana"></div>
+              <div class="product-text">
+                <h4>Organic Bananas</h4>
+                <p>12kg &times; 1</p>
+              </div>
+              <span class="product-price">$3.00</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right column: order summary -->
+      <div class="summary-column">
+        <div class="summary-card">
+          <h3>Order Summary</h3>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>$9.98</span>
+          </div>
+          <div class="summary-row">
+            <span>Delivery Fee</span>
+            <span>Free</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row summary-total">
+            <span>Total</span>
+            <span>$9.98</span>
+          </div>
+
+          <button class="place-order-btn">
+            Place Order
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

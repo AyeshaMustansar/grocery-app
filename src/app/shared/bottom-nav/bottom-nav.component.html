@@ -1,0 +1,20 @@
+<!--
+  Rendered once, outside <ion-router-outlet>, so it never takes part in an Ionic
+  page transition. Hidden on routes that are not one of the five tabs.
+-->
+<nav class="bottom-nav" *ngIf="activeIndex > -1">
+  <button
+    type="button"
+    class="nav-item"
+    *ngFor="let item of navItems; let i = index"
+    [class.active]="i === activeIndex"
+    [style.--item-color]="item.color"
+    [style.--item-bg]="item.bg"
+    [attr.aria-label]="item.label"
+    [attr.aria-current]="i === activeIndex ? 'page' : null"
+    (click)="selectItem(i)"
+  >
+    <ion-icon [name]="i === activeIndex ? item.iconActive : item.icon"></ion-icon>
+    <span class="label" *ngIf="i === activeIndex">{{ item.label }}</span>
+  </button>
+</nav>

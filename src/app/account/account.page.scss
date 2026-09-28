@@ -1,0 +1,317 @@
+
+$accent-green: #16a34a;
+$accent-green-soft: #f2faf5;
+$text-dark: #1f1f1f;
+$text-muted: #8a8a8a;
+$border-light: #eeeeee;
+$bg: #ffffff;
+.main{
+  max-width: 75%;
+  margin-left: auto;margin-right: auto;
+}
+@media (max-width: 768px){
+  .main{
+    max-width: 100%;
+  }
+}
+.account-content {
+  --background: #{$bg};
+  --padding-bottom: 110px;
+}
+
+
+// ===================================================
+// Top bar
+// ===================================================
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 0;
+  gap: 10px;
+
+  .top-bar-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: $text-dark;
+  }
+}
+
+// ===================================================
+// Top bar actions — search + moon icon, both hover-lift
+// ===================================================
+.top-bar-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f7;
+  color: $text-dark;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+
+  ion-icon {
+    font-size: 18px;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+
+  &:hover {
+    background: $accent-green-soft;
+    color: $accent-green;
+    transform: translateY(-2px);
+  }
+
+  &:hover ion-icon {
+    transform: rotate(18deg) scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  &.small {
+    width: 30px;
+    height: 30px;
+    background: transparent;
+  }
+}
+
+// ===================================================
+// Profile Header
+// ===================================================
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 20px 20px;
+}
+
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:hover .avatar-badge {
+    transform: scale(1.15);
+  }
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  &.img-avatar {
+    background-image: url(../../assets/men.avif);
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+.avatar-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: $accent-green;
+  border: 2px solid $bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  ion-icon {
+    font-size: 11px;
+    color: #fff;
+  }
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-dark;
+}
+
+.edit-icon {
+  font-size: 15px;
+  color: $accent-green;
+}
+
+.profile-email {
+  margin: 0;
+  font-size: 13px;
+  color: $text-muted;
+}
+
+// ===================================================
+// Menu List
+// ===================================================
+.account-list {
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.account-item {
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  border-bottom: 1px solid $border-light;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    background: #fafafa;
+    transform: translateX(4px);
+  }
+
+  &:active {
+    background: #f2f2f2;
+  }
+}
+
+.item-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 14px;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.account-item:hover .item-icon-wrap {
+  transform: scale(1.1) rotate(-6deg);
+}
+
+.item-icon {
+  font-size: 18px;
+}
+
+// per-item icon colors
+.icon-orders {
+  background: #FFE9E9;
+  .item-icon { color: #FF6B6B; }
+}
+.icon-my-details {
+  background: #E8F0FF;
+  .item-icon { color: #4D96FF; }
+}
+.icon-delivery {
+  background: #FFF2DC;
+  .item-icon { color: #FFA502; }
+}
+.icon-payment {
+  background: #F1E9FB;
+  .item-icon { color: #9C6ADE; }
+}
+.icon-promo {
+  background: #FFEAF3;
+  .item-icon { color: #FF7EB3; }
+}
+.icon-notifications {
+  background: #FFF4DC;
+  .item-icon { color: #F0A500; }
+}
+.icon-help {
+  background: #E4F9EE;
+  .item-icon { color: #20BF6B; }
+}
+.icon-about {
+  background: #E7F4FE;
+  .item-icon { color: #45AAF2; }
+}
+
+.item-label {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  color: $text-dark;
+}
+
+.item-badge {
+  margin-inline-end: 8px;
+  background: #e74c3c;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 2px 7px;
+}
+
+.chevron-icon {
+  font-size: 16px;
+  color: #c6c6c6;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.account-item:hover .chevron-icon {
+  transform: translateX(4px);
+  color: $accent-green;
+}
+
+// ===================================================
+// Logout
+// ===================================================
+.logout-wrapper {
+  padding: 24px 20px 12px;
+}
+
+.logout-btn {
+  --color: #{$accent-green};
+  --background: #{$accent-green-soft};
+  --border-radius: 28px;
+  --box-shadow: none;
+  font-weight: 600;
+  font-size: 15px;
+  height: 52px;
+  text-transform: none;
+  letter-spacing: 0;
+  transition: transform 0.2s ease;
+
+  ion-icon {
+    margin-inline-end: 6px;
+    transform: scaleX(-1);
+  }
+
+  &:hover {
+    --background: #{$accent-green};
+    --color: #fff;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+

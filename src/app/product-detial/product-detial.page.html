@@ -1,0 +1,119 @@
+<ion-content [fullscreen]="true" class="detail-content">
+  <div class="detail-wrapper">
+
+    <!-- Left column: image -->
+    <div class="image-column">
+      <div class="image-header">
+        <button class="icon-btn" (click)="goBack()">
+          <ion-icon name="chevron-back-outline"></ion-icon>
+        </button>
+        <button class="fav-btn">
+          <ion-icon name="heart-outline"></ion-icon>
+        </button>
+      </div>
+
+      <swiper-container class="image-swiper" pagination="true" pagination-clickable="true">
+        <swiper-slide>
+          <img src="../../assets/appel.png" alt="Naturel Red Apple" />
+        </swiper-slide>
+      </swiper-container>
+    </div>
+
+    <!-- Right column: info -->
+    <div class="info-column">
+
+      <div class="title-row">
+        <div>
+          <h1 class="product-name">Naturel Red Apple</h1>
+          <p class="product-meta">1kg, Price</p>
+        </div>
+      </div>
+
+      <div class="quantity-row">
+        <div class="stepper">
+          <button class="stepper-btn">
+            <ion-icon name="remove-outline"></ion-icon>
+          </button>
+          <span class="stepper-value">1</span>
+          <button class="stepper-btn1">
+            <ion-icon name="add-outline"></ion-icon>
+          </button>
+        </div>
+        <span class="total-price">$4.99</span>
+      </div>
+
+      <!-- Product Detail: static, always open -->
+      <div class="accordion-row">
+        <span class="accordion-title">Product Detail</span>
+        <ion-icon name="chevron-down-outline" class="accordion-chevron open"></ion-icon>
+      </div>
+      <p class="accordion-body open">
+        Apples Are Nutritious. Apples May Be Good For Weight Loss. Apples May Be Good For Your Heart. As Part Of A Healtful And Varied Diet.
+      </p>
+
+      <!-- Nutritions: static, always open -->
+      <div class="link-row">
+        <span>Nutritions</span>
+        <div class="link-row-right">
+          <span class="link-value">100gr</span>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </div>
+      </div>
+      <p class="accordion-body open">
+        Calories 52kcal, Carbs 14g, Fiber 2.4g, Sugar 10g, Protein 0.3g, Fat 0.2g, Vitamin C 8% DV.
+      </p>
+
+      <!-- Review: static -->
+      <div class="link-row">
+        <span>Review</span>
+        <div class="link-row-right">
+          <span class="stars"></span>
+          <ion-icon name="chevron-forward-outline" class="review-chevron"></ion-icon>
+        </div>
+      </div>
+
+      <div class="review-form open">
+        <p class="review-form-label">Your Rating</p>
+        <div class="star-picker">
+          <ion-icon name="star" class="filled"></ion-icon>
+          <ion-icon name="star" class="filled"></ion-icon>
+          <ion-icon name="star" class="filled"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+
+        <p class="review-form-label">Your Review</p>
+        <textarea class="review-textarea" rows="3" placeholder="Share your thoughts about this product..."></textarea>
+
+        <div class="review-form-actions">
+          <button class="review-cancel-btn">Cancel</button>
+          <button class="review-submit-btn">Submit Review</button>
+        </div>
+      </div>
+
+      <div class="submitted-reviews">
+        <div class="submitted-review">
+          <span class="submitted-stars">
+            <ion-icon name="star" class="filled"></ion-icon>
+            <ion-icon name="star" class="filled"></ion-icon>
+            <ion-icon name="star" class="filled"></ion-icon>
+            <ion-icon name="star" class="filled"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </span>
+          <p class="submitted-text">Really fresh and crisp, great taste!</p>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="add-basket-btn">
+          Add To Cart
+        </button>
+        <button class="buy-now-btn">
+          Buy Now
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</ion-content>

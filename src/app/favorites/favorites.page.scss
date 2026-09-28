@@ -1,0 +1,263 @@
+$nectar-green: #4FAE7C;
+$text-dark: #1c1c1e;
+$text-grey: #8e8e93;
+$bg-grey: #f4f4f5;
+$star-orange: #ff9f43;
+
+.favorites-content {
+  --padding-bottom: 110px;
+}
+
+.favorites-wrapper {
+  padding: 16px 20px 24px;
+}
+
+/* Top bar */
+.app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+
+  ion-icon {
+    font-size: 22px;
+    color: $text-dark;
+  }
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 800;
+  color: $text-dark;
+  letter-spacing: 0.5px;
+}
+
+.heart-badge {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $bg-grey;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 18px;
+    color: $nectar-green;
+  }
+
+  .badge-count {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    min-width: 14px;
+    height: 14px;
+    padding: 0 3px;
+    border-radius: 8px;
+    background: $nectar-green;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: $bg-grey;
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 22px;
+
+  ion-icon {
+    font-size: 18px;
+    color: $text-grey;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 15px;
+    width: 100%;
+    color: $text-dark;
+
+    &::placeholder {
+      color: $text-grey;
+    }
+  }
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  h1 {
+    font-size: 20px;
+    font-weight: 800;
+    color: $text-dark;
+    margin: 0;
+  }
+
+  .saved-count {
+    font-size: 13px;
+    color: $text-grey;
+  }
+}
+
+/* Grid - 2 cols small screen, 4 cols large screen */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+@media screen and (min-width: 900px) {
+  .favorites-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.favorite-card {
+  border: 1px solid #eee;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.card-image {
+  position: relative;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 75%;
+    width: 75%;
+    object-fit: contain;
+  }
+}
+
+.fav-toggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+
+  ion-icon {
+    font-size: 20px;
+    color: #e0575b;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.card-body {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rating {
+  font-size: 11px;
+  color: $text-dark;
+
+  ion-icon {
+    font-size: 11px;
+    color: $star-orange;
+  }
+}
+
+.item-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: $text-dark;
+  margin: 0;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 700;
+  color: $nectar-green;
+}
+
+.cart-btn {
+  width: 100%;
+  height: 38px;
+  border: none;
+  border-radius: 12px;
+  background: $nectar-green;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+
+  ion-icon {
+    font-size: 14px;
+  }
+
+  &:hover {
+    background: #459c6d;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Bottom nav styles now live in shared/bottom-nav/bottom-nav.component.scss */
