@@ -66,4 +66,21 @@ gotocard(){
 goTohome(){
   this.router.navigate(['/home-screen'])
 }
+
+gotoproduct(item: any) {
+  this.router.navigate(['/product-detial'], {
+    queryParams: {
+      name: item.name,
+      price: item.price,
+      img: item.img,
+      rating: item.rating,
+    },
+  });
+}
+
+  
+
+
+
+
 }

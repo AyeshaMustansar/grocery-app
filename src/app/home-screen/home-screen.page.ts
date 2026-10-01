@@ -25,6 +25,8 @@ addIcons({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomeScreenPage {
+
+
 product:any=signal([
   {name:"Organic Bananas",img:"assets/banana-png-32.png",price:4.99,weight:"7pcs, Price"},
   {name:"Red Apple",img:"assets/apple.png",price:4.99,weight:"1kg, Price"},
@@ -59,9 +61,23 @@ grocery:any=signal([
 
   constructor(private router: Router) {}
 
-  // Product card click — goes to the product detail page
-  gotoproduct(){
-    this.router.navigate(['/product-detial'])
-  }
+
+  // gotoproduct(){
+  //   this.router.navigate(['/product-detial'])
+  // }
+
+
+  
+
+gotoproduct(item: any) {
+  this.router.navigate(['/product-detial'], {
+    queryParams: {
+      name: item.name,
+      img: item.img,
+      price: item.price,
+      weight: item.weight
+    }
+  });
+}
 
 }

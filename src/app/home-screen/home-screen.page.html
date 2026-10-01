@@ -54,7 +54,7 @@
       @for(item of product();track item)
       {
       <swiper-slide>
-        <div class="product-card" (click)="gotoproduct()" style="background:#fdeaea;">
+        <div class="product-card"   (click)="gotoproduct(item)" style="background:#fdeaea;">
           <button class="fav-btn">
             <ion-icon name="heart-outline"></ion-icon>
           </button>
@@ -88,7 +88,7 @@
       @for(selling of detail();track detail)
       {
       <swiper-slide>
-        <div class="product-card" (click)="gotoproduct()" style="background:#f2fff1">
+        <div class="product-card" (click)="gotoproduct(selling)" style="background:#f2fff1">
           <button class="fav-btn">
             <ion-icon name="heart-outline"></ion-icon>
           </button>
@@ -131,7 +131,7 @@
       @for(card of grocery();track card)
       {
       <swiper-slide>
-        <div class="product-card" (click)="gotoproduct()"style="{{card.background}}">
+        <div class="product-card" (click)="gotoproduct(card)"style="{{card.background}}">
           <button class="fav-btn">
             <ion-icon name="heart-outline"></ion-icon>
           </button>
@@ -155,4 +155,3 @@
   </div>
 </ion-content>
 
-<!-- Bottom nav is rendered app-wide by <app-bottom-nav> in app.component.html -->

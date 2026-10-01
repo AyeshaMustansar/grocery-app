@@ -1,7 +1,9 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+
+ //// first impot the active route in  ts and constructor also 
+import { Router ,ActivatedRoute } from '@angular/router';
 import { addIcons } from 'ionicons';
 import {
   chevronBackOutline,
@@ -23,7 +25,30 @@ import {
 })
 export class ProductDetialPage {
 
-  constructor(private router: Router) {
+
+
+
+
+  product: any;
+constructor(private router: Router, private route: ActivatedRoute) {
+  this.route.queryParams.subscribe(params => {
+    this.product = {
+      name: params['name'],
+      price: Number(params['price']),   // query params are always strings
+      img: params['img'],
+      rating: Number(params['rating']),
+    };
+  });
+
+
+
+
+
+
+
+  
+
+
     addIcons({
       'chevron-back-outline': chevronBackOutline,
       'heart-outline': heartOutline,
@@ -38,4 +63,8 @@ export class ProductDetialPage {
   goBack() {
     this.router.navigate(['/home-screen']);
   }
+
+
+
+  
 }

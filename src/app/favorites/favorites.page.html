@@ -32,7 +32,8 @@
 
       @for(item of product(  );track item)
       {
-      <div class="favorite-card"style="{{item.background}}">
+        
+      <div class="favorite-card" (click)="gotoproduct(item)"style="{{item.background}}">
         <div class="card-image">
           <img src="{{item.img}}" alt="">
           <button class="fav-toggle">
@@ -53,5 +54,3 @@
     </div>
   </div>
 </ion-content>
-
-<!-- Bottom nav is rendered app-wide by <app-bottom-nav> in app.component.html -->

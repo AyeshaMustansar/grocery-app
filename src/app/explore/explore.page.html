@@ -36,8 +36,9 @@
 
     <!-- Product grid -->
     <div class="product-grid">
+
       @for(item of product(); track item) {
-      <div class="product-card" (click)="gotocard()"style="{{item.background}}">
+      <div class="product-card" (click)="gotoproduct(item)"style="{{item.background}}">
         <button class="like-btn"><ion-icon name="heart-outline"></ion-icon></button>
         <div class="product-image"><img src="{{item.img}}" alt="{{item.name}}" /></div>
         <div class="product-info">
