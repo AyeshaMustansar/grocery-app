@@ -4,33 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
+import { AlertService } from '../alert.service';
 import {
   eyeOffOutline,
   eyeOutline,
-  closeOutline,
-  checkmarkCircle,
-  closeCircle,
   mailOutline,
-  refreshOutline,
-  arrowForwardOutline,
-  shieldCheckmarkOutline,
-  alertCircleOutline,
-  sparklesOutline,
-  keyOutline,
-  checkmarkDoneOutline,
-  flashOutline,
-  leafOutline,
-  cartOutline,
-  bagCheckOutline,
-  storefrontOutline,
-  starOutline,
-  happyOutline,
-  lockClosedOutline,
-  lockOpenOutline,
-  timeOutline,
-  warningOutline,
-  shieldOutline,
-  checkmarkOutline
+  lockClosedOutline
 } from 'ionicons/icons';
 
 @Component({
@@ -44,64 +23,34 @@ import {
 export class LogInPage implements OnDestroy {
 
   // Saved (correct) credentials
-  savedEmail: string = 'chomoi594@gmail.com';
-  savedPassword: string = 'thank';
+  savedEmail: string = '123@gmail.com';
+  savedPassword: string = '123';
 
-  // User input fields
+  // User input
   email: string = '';
   password: string = '';
-
-  // Password visibility state
   showPassword: boolean = false;
 
-  // Form State
+  // Form state
   isLoading: boolean = false;
   emailError: boolean = false;
   passwordError: boolean = false;
 
-  //  3-Attempt Lockout Mechanism
+  // 3-attempt lockout
   failedAttempts: number = 0;
   isLockedOut: boolean = false;
   lockoutSeconds: number = 10;
-  lockoutCompleted: boolean = false;
   private lockoutTimer: any = null;
 
-  // Alert Modal State
-  showAlert: boolean = false;
-  isClosing: boolean = false;
-  alertType: 'success' | 'error' = 'success';
-  alertTitle: string = '';
-  alertMessage: string = '';
-  alertDetail: string = '';
-
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private alertService: AlertService
+  ) {
     addIcons({
       'eye-off-outline': eyeOffOutline,
       'eye-outline': eyeOutline,
-      'close-outline': closeOutline,
-      'checkmark-circle': checkmarkCircle,
-      'close-circle': closeCircle,
       'mail-outline': mailOutline,
-      'refresh-outline': refreshOutline,
-      'arrow-forward-outline': arrowForwardOutline,
-      'shield-checkmark-outline': shieldCheckmarkOutline,
-      'alert-circle-outline': alertCircleOutline,
-      'sparkles-outline': sparklesOutline,
-      'key-outline': keyOutline,
-      'checkmark-done-outline': checkmarkDoneOutline,
-      'flash-outline': flashOutline,
-      'leaf-outline': leafOutline,
-      'cart-outline': cartOutline,
-      'bag-check-outline': bagCheckOutline,
-      'storefront-outline': storefrontOutline,
-      'star-outline': starOutline,
-      'happy-outline': happyOutline,
       'lock-closed-outline': lockClosedOutline,
-      'lock-open-outline': lockOpenOutline,
-      'time-outline': timeOutline,
-      'warning-outline': warningOutline,
-      'shield-outline': shieldOutline,
-      'checkmark-outline': checkmarkOutline,
     });
   }
 
@@ -120,74 +69,78 @@ export class LogInPage implements OnDestroy {
 
     this.isLoading = true;
 
-    // Simulate authenticating for ultra-smooth interactive feel
-    setTimeout(() => {
+    setTimeout(async () => {
       this.isLoading = false;
 
+      // 1. Empty fields
       if (!trimmedEmail || !trimmedPassword) {
         this.emailError = !trimmedEmail;
         this.passwordError = !trimmedPassword;
-        this.handleFailedAttempt('Credentials Required', 'Please enter both your email and password to continue.');
+        await this.handleFailedAttempt(
+          'Credentials Required',
+          'Please enter both your email and password to continue.'
+        );
         return;
       }
 
-      const isEmailCorrect = trimmedEmail.toLowerCase() === this.savedEmail.toLowerCase();
+      const isEmailCorrect =
+        trimmedEmail.toLowerCase() === this.savedEmail.toLowerCase();
       const isPasswordCorrect = trimmedPassword === this.savedPassword;
 
+      // 2. Correct login
       if (isEmailCorrect && isPasswordCorrect) {
-        // Success: Reset failed attempts
         this.failedAttempts = 0;
-        this.lockoutCompleted = false;
-        this.emailError = false;
-        this.passwordError = false;
-        this.alertType = 'success';
-        this.alertTitle = 'Login Successful!';
-        this.alertMessage = 'Welcome back! Your fresh market cart and offers are ready.';
-        this.alertDetail = this.savedEmail;
-        this.openAlert();
-      } else {
-        this.emailError = !isEmailCorrect;
-        this.passwordError = !isPasswordCorrect;
-
-        let errorMsg = '';
-        if (!isEmailCorrect && !isPasswordCorrect) {
-          errorMsg = 'Both the email and password provided are incorrect.';
-        } else if (!isEmailCorrect) {
-          errorMsg = 'We could not find an account with this email address.';
-        } else {
-          errorMsg = 'The password entered is incorrect. Please try again.';
-        }
-
-        this.handleFailedAttempt('Wrong Credentials', errorMsg);
+        await this.alertService.showAlert(
+          'Login Successful!',
+          'Welcome back! Your fresh market cart and offers are ready.',
+          [
+            {
+              text: 'Explore Groceries',
+              handler: () => {
+                this.router.navigate(['/home-screen']);
+              },
+            },
+          ]
+        );
+        return;
       }
+
+      // 3. Wrong login
+      this.emailError = !isEmailCorrect;
+      this.passwordError = !isPasswordCorrect;
+
+      let errorMsg = '';
+      if (!isEmailCorrect && !isPasswordCorrect) {
+        errorMsg = 'Both the email and password provided are incorrect.';
+      } else if (!isEmailCorrect) {
+        errorMsg = 'We could not find an account with this email address.';
+      } else {
+        errorMsg = 'The password entered is incorrect. Please try again.';
+      }
+
+      await this.handleFailedAttempt('Wrong Credentials', errorMsg);
     }, 400);
   }
 
-  private handleFailedAttempt(title: string, message: string) {
+  private async handleFailedAttempt(title: string, message: string) {
     this.failedAttempts++;
 
     if (this.failedAttempts >= 3) {
-      //  3 attempts reached: Lockout for 10 seconds
       this.startLockout();
-      this.alertType = 'error';
-      this.alertTitle = 'Security Cooldown Active';
-      this.alertMessage = 'Too many failed attempts. For your account protection, login is disabled for 10 seconds.';
-      this.alertDetail = 'Temporary Security Lock';
-      this.openAlert();
-    } else {
-      // Normal error: clean message with NO attempt count numbers
-      this.lockoutCompleted = false;
-      this.alertType = 'error';
-      this.alertTitle = title;
-      this.alertMessage = message;
-      this.alertDetail = 'Please check your information';
-      this.openAlert();
+      await this.alertService.showAlert(
+        'Security Cooldown Active',
+        'Too many failed attempts. Login is disabled for 10 seconds.'
+      );
+      return;
     }
+
+    await this.alertService.showAlert(title, message, [
+      { text: 'Try Again', role: 'cancel' },
+    ]);
   }
 
   private startLockout() {
     this.isLockedOut = true;
-    this.lockoutCompleted = false;
     this.lockoutSeconds = 10;
 
     if (this.lockoutTimer) {
@@ -211,37 +164,6 @@ export class LogInPage implements OnDestroy {
     this.isLockedOut = false;
     this.failedAttempts = 0;
     this.lockoutSeconds = 10;
-    this.lockoutCompleted = true;
-
-    if (this.showAlert && this.alertType === 'error') {
-      this.alertTitle = 'Security Lock Lifted';
-      this.alertMessage = 'Cooldown period is complete. The login button is now re-enabled.';
-      this.alertDetail = 'System Ready';
-    }
-  }
-
-  private openAlert() {
-    this.isClosing = false;
-    this.showAlert = true;
-  }
-
-  closeAlert() {
-    this.isClosing = true;
-    setTimeout(() => {
-      this.showAlert = false;
-      this.isClosing = false;
-      this.lockoutCompleted = false;
-    }, 250);
-  }
-
-  proceedToHome() {
-    this.showAlert = false;
-    this.router.navigate(['/home-screen']);
-  }
-
-  tryAgain() {
-    if (this.isLockedOut) return;
-    this.closeAlert();
   }
 
   goToSignUp() {
