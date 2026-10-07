@@ -30,7 +30,7 @@
     <!-- Grid -->
     <div class="favorites-grid">
 
-      @for(item of product(  );track item)
+      @for(item of   favProducts(  );track item)
       {
         
       <div class="favorite-card" (click)="gotoproduct(item)"style="{{item.background}}">

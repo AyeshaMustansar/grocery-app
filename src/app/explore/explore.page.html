@@ -24,7 +24,7 @@
 
     <!-- Category chips -->
     <swiper-container class="category-swiper" [breakpoints]="{'0': {slidesPerView: 2.1, spaceBetween: 12}, '900': {slidesPerView: 4.1, spaceBetween: 16}}">
-      @for(category of detail(); track category) {
+      @for(category of exploreCategories(); track category) {
       <swiper-slide>
         <div class="category-chip"style="{{category.background}}">
           <img class="category-img" src="{{category.img}}" alt="{{category.name}}" />
@@ -37,7 +37,7 @@
     <!-- Product grid -->
     <div class="product-grid">
 
-      @for(item of product(); track item) {
+      @for(item of exploreProducts(); track item) {
       <div class="product-card" (click)="gotoproduct(item)"style="{{item.background}}">
         <button class="like-btn"><ion-icon name="heart-outline"></ion-icon></button>
         <div class="product-image"><img src="{{item.img}}" alt="{{item.name}}" /></div>
